@@ -19,6 +19,14 @@ class UsuarioController {
     const user = await usuarioService.getUserById(id);
     res.status(200).json(user);
   }
+
+  async updateUser(req, res) {
+    const { id } = req.params;
+    const dto = req.body;
+
+    await usuarioService.updateUser(id, dto);
+    res.status(200).json({ message: "User updated!" });
+  }
 }
 
 module.exports = UsuarioController;
