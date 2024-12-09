@@ -38,6 +38,15 @@ class UsuarioService {
     });
     return userUpdated;
   }
+
+  async deleteUser(id) {
+    const userDeleted = await userDb.destroy({
+      where: {
+        id: id,
+      },
+    });
+    return userDeleted;
+  }
 }
 
 module.exports = UsuarioService;
