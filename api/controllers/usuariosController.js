@@ -27,6 +27,12 @@ class UsuarioController {
     await usuarioService.updateUser(id, dto);
     res.status(200).json({ message: "User updated!" });
   }
+
+  async deleteUser(req, res) {
+    const { id } = req.params;
+    await usuarioService.deleteUser(id);
+    res.status(200).json({ message: "User deleted!" });
+  }
 }
 
 module.exports = UsuarioController;
