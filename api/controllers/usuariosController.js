@@ -8,6 +8,11 @@ class UsuarioController {
     const user = await usuarioService.createUser({ nome, email, senha });
     res.status(200).json(user);
   }
+
+  async getAllUser(req, res) {
+    const users = await usuarioService.getAllUser();
+    res.status(200).json(users);
+  }
 }
 
 module.exports = UsuarioController;
