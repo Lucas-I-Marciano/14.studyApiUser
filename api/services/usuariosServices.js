@@ -29,6 +29,15 @@ class UsuarioService {
     });
     return user;
   }
+
+  async updateUser(id, dto) {
+    const userUpdated = await userDb.update(dto, {
+      where: {
+        id: id,
+      },
+    });
+    return userUpdated;
+  }
 }
 
 module.exports = UsuarioService;
