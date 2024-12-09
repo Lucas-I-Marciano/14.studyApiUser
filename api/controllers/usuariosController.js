@@ -13,6 +13,12 @@ class UsuarioController {
     const users = await usuarioService.getAllUser();
     res.status(200).json(users);
   }
+
+  async getUserById(req, res) {
+    const { id } = req.params;
+    const user = await usuarioService.getUserById(id);
+    res.status(200).json(user);
+  }
 }
 
 module.exports = UsuarioController;
