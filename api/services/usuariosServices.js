@@ -21,3 +21,5 @@ class UsuarioService {
     return JSON.stringify(users, null, 2);
   }
 }
+
+module.exports = UsuarioService;
