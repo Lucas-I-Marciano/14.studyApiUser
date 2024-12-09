@@ -18,7 +18,7 @@ class UsuarioService {
 
   async getAllUser() {
     const users = await userDb.findAll();
-    return JSON.stringify(users, null, 2);
+    return users;
   }
 }
 
