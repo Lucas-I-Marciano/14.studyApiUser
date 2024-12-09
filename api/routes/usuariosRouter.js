@@ -6,7 +6,7 @@ const usuarioController = new UsuarioController();
 
 usuariosRouter
   .get("/", (req, res) => usuarioController.getAllUser(req, res))
-  .get("/id/:id")
+  .get("/id/:id", (req, res) => usuarioController.getUserById(req, res))
   .post("/", (req, res) => usuarioController.createUser(req, res))
   .put("/id/:id")
   .delete("/id/:id");
