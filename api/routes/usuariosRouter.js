@@ -9,6 +9,6 @@ usuariosRouter
   .get("/id/:id", (req, res) => usuarioController.getUserById(req, res))
   .post("/", (req, res) => usuarioController.createUser(req, res))
   .put("/id/:id", (req, res) => usuarioController.updateUser(req, res))
-  .delete("/id/:id");
+  .delete("/id/:id", (req, res) => usuarioController.deleteUser(req, res));
 
 module.exports = usuariosRouter;
