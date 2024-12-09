@@ -17,8 +17,4 @@ class UsuarioService {
   }
 }
 
-const a = new UsuarioService();
-
-a.createUser({ nome: "Lucas", email: "l@l", senha: "asd" });
-
 module.exports = UsuarioService;
