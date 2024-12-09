@@ -15,6 +15,9 @@ class UsuarioService {
       salt: randomB,
     });
   }
-}
 
-module.exports = UsuarioService;
+  async getAllUser() {
+    const users = await userDb.findAll();
+    return JSON.stringify(users, null, 2);
+  }
+}
