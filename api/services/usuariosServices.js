@@ -20,6 +20,15 @@ class UsuarioService {
     const users = await userDb.findAll();
     return users;
   }
+
+  async getUserById(id) {
+    const user = await userDb.findAll({
+      where: {
+        id: id,
+      },
+    });
+    return user;
+  }
 }
 
 module.exports = UsuarioService;
