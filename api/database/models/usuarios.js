@@ -16,13 +16,14 @@ module.exports = (sequelize, DataTypes) => {
       nome: DataTypes.STRING,
       email: DataTypes.STRING,
       senha: DataTypes.STRING,
+      salt: DataTypes.STRING,
     },
     {
       sequelize,
       modelName: "usuarios",
       defaultScope: {
         attributes: {
-          exclude: ["senha"],
+          exclude: ["senha", "salt"],
         },
       },
     }
