@@ -1,5 +1,5 @@
 const db = require("../database/models/index.js");
-const createHashPassword = require("../utils/createHashPass.js");
+const { createHashPassword } = require("../utils/HashPass.js");
 const uuid = require("uuid");
 
 const userDb = db.usuarios;
