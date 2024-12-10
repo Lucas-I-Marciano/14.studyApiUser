@@ -2,6 +2,7 @@ const bodyParser = require("body-parser");
 
 const produtoRouter = require("./produtoRoute");
 const usuariosRouter = require("./usuariosRouter.js");
+const authRouter = require("./authRoute.js");
 
 module.exports = (app) => {
   //prettier-ignore
@@ -9,4 +10,5 @@ module.exports = (app) => {
     .use(bodyParser.json())
     .use("/produtos", produtoRouter)
     .use("/usuarios", usuariosRouter)
+    .use("/auth", authRouter);
 };
