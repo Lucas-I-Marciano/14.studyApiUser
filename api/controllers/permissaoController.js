@@ -1,6 +1,6 @@
 const PermissoesServices = require("../services/permissoesServices.js");
 
-const permissaoService = new PermissaoService();
+const permissaoService = new PermissoesServices();
 
 class PermissaoController {
   async criaPermissao(req, res) {
