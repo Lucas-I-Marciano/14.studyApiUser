@@ -12,10 +12,10 @@ module.exports = (app) => {
   //prettier-ignore
   app
     .use(bodyParser.json())
+    .use("/auth", authRouter)
     .use(verifyAuth)
     .use("/usuarios", usuariosRouter)
     .use("/produtos", produtoRouter)
-    .use("/auth", authRouter)
     .use("/roles", rolesRouter)
     .use("/permissoes", permissaoRouter);
 };

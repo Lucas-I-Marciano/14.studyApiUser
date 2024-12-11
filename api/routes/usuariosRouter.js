@@ -1,8 +1,11 @@
 const { Router } = require("express");
 const UsuarioController = require("../controllers/usuariosController.js");
+const verifyAuth = require("../middlewares/authMiddleware.js");
 
 const usuariosRouter = Router();
 const usuarioController = new UsuarioController();
+
+usuariosRouter.use(verifyAuth);
 
 usuariosRouter
   .get("/", (req, res) => usuarioController.getAllUser(req, res))
