@@ -52,6 +52,29 @@ class PermissaoController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async updatePermissionById(req, res) {
+    const dto = req.body;
+    const { id } = req.params;
+    try {
+      const permission = await permissaoService.getPermissionById(id);
+
+      if (!permission) {
+        return res.status(400).json({ message: "Permissão não encontrada" });
+      }
+
+      await permissaoService.updatePermissionById(id, dto);
+
+      const newPermission = await permissaoService.getPermissionById(id);
+      res.status(200).json({
+        message: "Permissão Atualizada",
+        newPermission: newPermission,
+        oldPermission: permission,
+      });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = PermissaoController;
