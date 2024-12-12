@@ -36,6 +36,19 @@ class PermissoesServices {
       throw new Error(error.message);
     }
   }
+
+  async getPermissionById(id) {
+    try {
+      const permission = await permissaoTabela.findOne({
+        where: {
+          id,
+        },
+      });
+      return permission;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
 
 module.exports = PermissoesServices;
