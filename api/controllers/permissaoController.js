@@ -34,6 +34,24 @@ class PermissaoController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async deletePermissionById(req, res) {
+    const { id } = req.params;
+    try {
+      const permission = await permissaoService.getPermissionById(id);
+
+      if (!permission) {
+        return res.status(400).json({ message: "Permissão não encontrada" });
+      }
+
+      await permissaoService.deletePermissionById(id);
+      res
+        .status(200)
+        .json({ message: "Permissao exluida", oldRole: permission });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = PermissaoController;
