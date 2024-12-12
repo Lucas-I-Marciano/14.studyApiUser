@@ -32,6 +32,22 @@ class RolesController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async deleteRoleById(req, res) {
+    const { id } = req.params;
+    try {
+      const role = await rolesService.getRoleById(id);
+
+      if (!role) {
+        return res.status(400).json({ message: "Role não encontrada" });
+      }
+
+      await rolesService.deleteRoleById(id);
+      res.status(200).json({ message: "Role exluida", oldRole: role });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = RolesController;
