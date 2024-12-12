@@ -27,6 +27,15 @@ class RolesService {
       throw new Error(error.message);
     }
   }
+
+  async getAllRoles() {
+    try {
+      const roles = await roleTable.findAll({});
+      return roles;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
 
 module.exports = RolesService;
