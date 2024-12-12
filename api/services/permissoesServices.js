@@ -49,6 +49,18 @@ class PermissoesServices {
       throw new Error(error.message);
     }
   }
+
+  async deletePermissionById(id) {
+    try {
+      await permissaoTabela.destroy({
+        where: {
+          id,
+        },
+      });
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
 
 module.exports = PermissoesServices;
