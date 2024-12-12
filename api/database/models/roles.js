@@ -13,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
         as: "roles-e-permissoes",
         foreignKey: "role_id",
       });
+
+      roles.belongsToMany(models["usuarios"], {
+        through: "usuarios_roles",
+        as: "roles-e-usuarios",
+        foreignKey: "role_id",
+      });
     }
   }
   roles.init(
