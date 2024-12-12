@@ -24,6 +24,16 @@ class PermissaoController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async getPermissionById(req, res) {
+    const { id } = req.params;
+    try {
+      const role = await permissaoService.getPermissionById(id);
+      res.status(200).json(role);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = PermissaoController;
