@@ -13,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
         as: "usuarios-e-roles",
         foreignKey: "usuario_id", // Column name in my junction model
       });
+
+      usuarios.belongsToMany(models["permissoes"], {
+        through: "usuarios_permissoes",
+        as: "usuarios-e-permissoes",
+        foreignKey: "usuario_id",
+      });
     }
   }
   usuarios.init(
