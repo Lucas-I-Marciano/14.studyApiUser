@@ -60,6 +60,20 @@ class RolesService {
       throw new Error(error.message);
     }
   }
+
+  async updateRoleById(id, dto) {
+    try {
+      const updatedRole = await roleTable.update(dto, {
+        where: {
+          id,
+        },
+      });
+      console.log(updatedRole);
+      return updatedRole;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
 
 module.exports = RolesService;
