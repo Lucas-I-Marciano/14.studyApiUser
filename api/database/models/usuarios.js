@@ -8,7 +8,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      usuarios.belongsToMany(models["roles"], {
+        through: "usuarios_roles",
+        as: "usuarios-e-roles",
+        foreignKey: "usuario_id", // Column name in my junction model
+      });
+
+      usuarios.belongsToMany(models["permissoes"], {
+        through: "usuarios_permissoes",
+        as: "usuarios-e-permissoes",
+        foreignKey: "usuario_id",
+      });
     }
   }
   usuarios.init(
