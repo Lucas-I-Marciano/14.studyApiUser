@@ -41,10 +41,21 @@ class RolesService {
     try {
       const role = await roleTable.findOne({
         where: {
-          id: id,
+          id,
         },
       });
-      console.log(role);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async deleteRoleById(id) {
+    try {
+      await roleTable.destroy({
+        where: {
+          id,
+        },
+      });
     } catch (error) {
       throw new Error(error.message);
     }
