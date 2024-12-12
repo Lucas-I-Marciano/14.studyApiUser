@@ -48,6 +48,27 @@ class RolesController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async updateRoleById(req, res) {
+    const dto = req.body;
+    const { id } = req.params;
+    try {
+      const role = await rolesService.getRoleById(id);
+
+      if (!role) {
+        return res.status(400).json({ message: "Role não encontrada" });
+      }
+
+      await rolesService.updateRoleById(id, dto);
+
+      const newRole = await rolesService.getRoleById(id);
+      res
+        .status(200)
+        .json({ message: "Role Atualizada", newRole: newRole, oldRole: role });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = RolesController;
