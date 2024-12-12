@@ -36,6 +36,19 @@ class RolesService {
       throw new Error(error.message);
     }
   }
+
+  async getRoleById(id) {
+    try {
+      const role = await roleTable.findOne({
+        where: {
+          id: id,
+        },
+      });
+      console.log(role);
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
 
 module.exports = RolesService;
