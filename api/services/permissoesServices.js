@@ -61,6 +61,25 @@ class PermissoesServices {
       throw new Error(error.message);
     }
   }
+
+  async updatePermissionById(id, dto) {
+    try {
+      const updatedPermission = await permissaoTabela.update(dto, {
+        where: {
+          id,
+        },
+      });
+
+      const toReturn = await permissaoTabela.findOne({
+        where: {
+          id,
+        },
+      });
+      return toReturn;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
 }
 
 module.exports = PermissoesServices;
