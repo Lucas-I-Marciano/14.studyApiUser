@@ -44,6 +44,7 @@ class RolesService {
           id,
         },
       });
+      return role;
     } catch (error) {
       throw new Error(error.message);
     }
