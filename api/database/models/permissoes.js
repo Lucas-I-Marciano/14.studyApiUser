@@ -13,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
         as: "permissoes-e-roles",
         foreignKey: "permissao_id",
       });
+
+      permissoes.belongsToMany(models["usuarios"], {
+        through: "usuarios_permissoes",
+        as: "permissoes-e-usuarios",
+        foreignKey: "permissao_id",
+      });
     }
   }
   permissoes.init(
