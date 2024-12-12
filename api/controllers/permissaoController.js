@@ -15,6 +15,15 @@ class PermissaoController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async getAllPermissions(req, res) {
+    try {
+      const permission = await permissaoService.getAllPermission();
+      res.status(200).json(permission);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = PermissaoController;
