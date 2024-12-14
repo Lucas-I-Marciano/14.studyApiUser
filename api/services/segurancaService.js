@@ -54,6 +54,43 @@ class SegurancaService {
 
     return usuarioAtualizado;
   }
+
+  async permissoesDasRoles(dto) {
+    const permissoes = await permissoesModel.findAll({
+      where: {
+        id: {
+          [Op.in]: dto["permissoes"],
+        },
+      },
+    });
+
+    const role = await rolesModel.findOne({
+      where: {
+        id: dto["roleId"],
+      },
+    });
+
+    await role.setRoles_e_permissoes(permissoes);
+
+    const roleAtualizada = await rolesModel.findOne({
+      where: {
+        id: dto["roleId"],
+      },
+      attributes: ["id", "nome", "descricao"],
+      include: [
+        {
+          model: permissoesModel,
+          as: "roles_e_permissoes",
+          attributes: ["id", "nome"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+
+    return roleAtualizada;
+  }
 }
 
 module.exports = SegurancaService;
