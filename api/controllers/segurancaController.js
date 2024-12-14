@@ -18,6 +18,19 @@ class SegurancaController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async permissoesDasRoles(req, res) {
+    const dto = {
+      permissoes: req.body["permissoes"],
+      roleId: req.body["roleId"],
+    };
+    try {
+      const cadastro = await segurancaService.permissoesDasRoles(dto);
+      res.status(200).json(cadastro);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = SegurancaController;
