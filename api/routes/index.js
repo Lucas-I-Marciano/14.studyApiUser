@@ -14,8 +14,8 @@ module.exports = (app) => {
   app
     .use(bodyParser.json())
     .use("/auth", authRouter)
-    .use(verifyAuth)
     .use("/usuarios", usuariosRouter)
+    .use(verifyAuth)
     .use("/produtos", produtoRouter)
     .use("/roles", rolesRouter)
     .use("/permissoes", permissaoRouter)
