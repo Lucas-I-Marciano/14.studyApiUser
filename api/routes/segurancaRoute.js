@@ -5,8 +5,11 @@ const segurancaRouter = Router();
 const segurancaController = new SegurancaController();
 
 segurancaRouter
+  .get("/acl", (req, res) =>
+    segurancaController.listaPermissoesERoles(req, res)
+  )
   .post("/acl", async (req, res) => segurancaController.cadastrarAcl(req, res))
-  .get("/roles/cadastro-permissoes", async (req, res) =>
+  .post("/roles/cadastro-permissoes", async (req, res) =>
     segurancaController.permissoesDasRoles(req, res)
   );
 
