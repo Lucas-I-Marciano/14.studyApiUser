@@ -31,6 +31,15 @@ class SegurancaController {
       res.status(400).json({ message: error.message });
     }
   }
+
+  async listaPermissoesERoles(req, res) {
+    try {
+      const user = await segurancaService.listaPermissoesERoles();
+      res.status(200).json(user);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = SegurancaController;
