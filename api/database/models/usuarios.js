@@ -10,13 +10,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       usuarios.belongsToMany(models["roles"], {
         through: "usuarios_roles",
-        as: "usuarios-e-roles",
+        as: "usuarios_e_roles",
         foreignKey: "usuario_id", // Column name in my junction model
       });
 
       usuarios.belongsToMany(models["permissoes"], {
         through: "usuarios_permissoes",
-        as: "usuarios-e-permissoes",
+        as: "usuarios_e_permissoes",
         foreignKey: "usuario_id",
       });
     }
