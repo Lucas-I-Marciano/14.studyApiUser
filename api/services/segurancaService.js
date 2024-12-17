@@ -12,6 +12,28 @@ class SegurancaService {
         id: { [Op.in]: dto["roles"] },
       },
     });
+    const listaRoles = roles.map((role) => role.nome);
+    if (listaRoles.includes("admin")) {
+      const usuarios = await usuarioModel.findAll({
+        include: [
+          {
+            model: rolesModel,
+            as: "usuarios_e_roles",
+            attributes: ["id", "nome"],
+            through: {
+              attributes: [],
+            },
+          },
+        ],
+      });
+      const usuarioRolesLista = usuarios.map(
+        (user) => user.usuarios_e_roles
+      )[0];
+      return usuarioRolesLista
+        .map((valor) => valor["nome"])
+        .filter((valor) => valor === "admin").length;
+    }
+
     const permissoes = await permissoesModel.findAll({
       where: {
         id: { [Op.in]: dto["permissoes"] },
@@ -90,6 +112,32 @@ class SegurancaService {
     });
 
     return roleAtualizada;
+  }
+
+  async listaPermissoesERoles() {
+    const users = await usuarioModel.findAll({
+      attributes: ["id", "nome", "email"],
+      include: [
+        {
+          model: rolesModel,
+          as: "usuarios_e_roles",
+          attributes: ["nome"],
+          through: {
+            attributes: [],
+          },
+        },
+        {
+          model: permissoesModel,
+          as: "usuarios_e_permissoes",
+          attributes: ["nome"],
+          through: {
+            attributes: [],
+          },
+        },
+      ],
+    });
+
+    return users;
   }
 }
 
